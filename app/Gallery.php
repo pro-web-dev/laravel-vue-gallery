@@ -26,10 +26,10 @@ class Gallery extends Model
         }
     }
 
-    public function getImage()
-    {
-        return $this->image ? $this->image : '/img/no-image.png';
-    }
+//    public function getImage()
+//    {
+//        return $this->image ? $this->image : '/img/no-image.png';
+//    }
 
     public function remove()
     {

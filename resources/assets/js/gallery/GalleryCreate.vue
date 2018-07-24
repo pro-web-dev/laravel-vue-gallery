@@ -1,17 +1,20 @@
 <template>
-    <div class="container">
+<div class="container">
         <h1 class="text-center mb-3">My Gallery</h1>
         <div class="row">
             <div class="col-lg-4 col-sm-6 my-2" v-for="(image, index) in images" :key="index">
                 <div class="box">
                     <router-link :to="{name: 'showGallery', params: {id: image.id}}">
-                        <img :src="getImage(image)" class="img-thumbnail">
+                        <img src="" class="img-thumbnail">
                     </router-link>
                     <router-link :to="{name: 'showGallery', params: {id: image.id}}" class="btn btn-info">
                         Show <i class="fa fa-eye"></i>
                     </router-link>
                     <router-link :to="{name: 'editGallery', params: {id: image.id}}" class="btn btn-warning">
                         Edit <i class="fa fa-edit"></i>
+                    </router-link>
+                    <router-link :to="{name: 'showGallery', params: {id: image.id}}" class="fa fa-eye mr-3">
+                        View
                     </router-link>
                     <a href="#" class="btn btn-danger" @click="deleteEntry(image.id, index)">
                         Delete <i class="fa fa-remove"></i>
@@ -31,12 +34,12 @@
         },
         mounted() {
             var app = this;
-            HTTP.get('api/gallery')
+            HTTP.get('image')
                 .then( (resp) => {
                     app.images = resp.data;
                 })
                 .catch( (resp) => {
-                    alert("Не удалось загрузить " + resp);
+                    alert("Не удалось загрузить");
                 });
         },
         methods: {
@@ -51,9 +54,6 @@
                             alert("Не удалось удалить!");
                         });
                 }
-            },
-            getImage(image){
-                return image ? image.image : '/img/no-image.png';
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
 
-Route::get('/', 'GalleryController@index');
+Route::get('/', 'HomeController@index');
 
 
